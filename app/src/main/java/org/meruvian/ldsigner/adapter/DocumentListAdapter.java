@@ -7,7 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.meruvian.ldsigner.R;
+import com.meruvian.ldsigner.R;
+
 import org.meruvian.ldsigner.entity.Document;
 
 import java.util.ArrayList;

@@ -19,6 +19,8 @@ import android.widget.Toast;
 
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
+import com.meruvian.ldsigner.R;
+
 import org.meruvian.ldsigner.LdsignerApplication;
 import org.meruvian.ldsigner.adapter.DocumentListAdapter;
 import org.meruvian.ldsigner.entity.DaoSession;
@@ -39,16 +41,16 @@ import de.greenrobot.event.EventBus;
  */
 public class SignedDocumentActivity extends AppCompatActivity {
 
-    @Bind(org.meruvian.ldsigner.R.id.fab_add) FloatingActionButton fab;
-    @Bind(org.meruvian.ldsigner.R.id.doc_list) RecyclerView docList;
-    @Bind(org.meruvian.ldsigner.R.id.toolbar) Toolbar toolbar;
+    @Bind(R.id.fab_add) FloatingActionButton fab;
+    @Bind(R.id.doc_list) RecyclerView docList;
+    @Bind(R.id.toolbar) Toolbar toolbar;
     private DocumentListAdapter docListAdapter;
     protected static final int CHOOSE_FILE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(org.meruvian.ldsigner.R.layout.signed_document_activity);
+        setContentView(R.layout.signed_document_activity);
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
@@ -95,7 +97,7 @@ public class SignedDocumentActivity extends AppCompatActivity {
         loadDocuments();
     }
 
-    @OnClick(org.meruvian.ldsigner.R.id.fab_add)
+    @OnClick(R.id.fab_add)
     public void onClick() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");

@@ -1,32 +1,22 @@
 package org.meruvian.ldsigner.activity;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.joanzapata.pdfview.PDFView;
-import org.meruvian.ldsigner.LdsignerApplication;
-import org.meruvian.ldsigner.R;
-import org.meruvian.ldsigner.entity.Document;
-import org.meruvian.ldsigner.entity.DocumentDao;
-import org.meruvian.ldsigner.entity.FileInfo;
-import org.meruvian.ldsigner.entity.FileInfoDao;
-import org.meruvian.ldsigner.job.DocumentSignJob;
+import com.meruvian.ldsigner.R;
 import com.path.android.jobqueue.JobManager;
 
 import java.io.File;
-import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -41,6 +31,7 @@ public class ViewDocumentActivity extends AppCompatActivity {
     @Bind(R.id.pdfview) PDFView pdfView;
     private AlertDialog alertDialog;
     private JobManager jobManager;
+    private String pdfPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,21 +46,22 @@ public class ViewDocumentActivity extends AppCompatActivity {
         }
 
         fabSign.setImageDrawable(new IconDrawable(this, FontAwesomeIcons.fa_paint_brush).colorRes(android.R.color.white));
+        pdfPath = getIntent().getStringExtra("filePath");
     }
 
     @OnClick(R.id.fab_sign)
     public void onClick() {
-        alertDialog.show();
+//        alertDialog.show();
+
+        
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        String filePath = getIntent().getStringExtra("filePath");
-        if (filePath != null) {
-
-            pdfView.fromFile(new File(filePath))
+        if (pdfPath != null) {
+            pdfView.fromFile(new File(pdfPath))
                     .defaultPage(1)
                     .showMinimap(false)
                     .enableSwipe(true)
@@ -83,46 +75,49 @@ public class ViewDocumentActivity extends AppCompatActivity {
 
         }
 
+
     }
 
     private void setupAlertDialog() {
-        final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+//        final EditText input = new EditText(this);
+//        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+//
+//        DialogInterface.OnClickListener onPositiveButton = new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                LdsignerApplication app  = LdsignerApplication.getInstance();
+//                DocumentDao documentDao = app.getDaoSession().getDocumentDao();
+//                FileInfoDao fileInfoDao = app.getDaoSession().getFileInfoDao();
+//                String filePath = getIntent().getStringExtra("filePath");
+//
+//                Document document = new Document();
+//
+//                FileInfo fileInfo = document.getDetachedFileInfo();
+//                fileInfo.setPath(filePath);
+//                long fileInfoId = fileInfoDao.insert(fileInfo);
+//
+//                document.setDbCreateDate(new Date());
+//                document.setDbActiveFlag(1);
+//                document.setFileInfoId(fileInfoId);
+//
+//                documentDao.insert(document);
+//
+//                DocumentSignJob.newInstance(document.getDbId(), input.getText().toString(), filePath);
+//
+//                jobManager = LdsignerApplication.getInstance().getJobManager();
+//                jobManager.addJobInBackground(DocumentSignJob.newInstance(document.getDbId(), input.getText().toString(), filePath));
+//            }
+//        };
+//
+//        alertDialog = new AlertDialog.Builder(this)
+//                .setTitle(R.string.password)
+//                .setPositiveButton(R.string.sign, onPositiveButton)
+//                .setCancelable(false)
+//                .setIcon(new IconDrawable(this, FontAwesomeIcons.fa_key))
+//                .setView(input)
+//                .create();
 
-        DialogInterface.OnClickListener onPositiveButton = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                LdsignerApplication app  = LdsignerApplication.getInstance();
-                DocumentDao documentDao = app.getDaoSession().getDocumentDao();
-                FileInfoDao fileInfoDao = app.getDaoSession().getFileInfoDao();
-                String filePath = getIntent().getStringExtra("filePath");
 
-                Document document = new Document();
-
-                FileInfo fileInfo = document.getDetachedFileInfo();
-                fileInfo.setPath(filePath);
-                long fileInfoId = fileInfoDao.insert(fileInfo);
-
-                document.setDbCreateDate(new Date());
-                document.setDbActiveFlag(1);
-                document.setFileInfoId(fileInfoId);
-
-                documentDao.insert(document);
-
-                DocumentSignJob.newInstance(document.getDbId(), input.getText().toString(), filePath);
-
-                jobManager = LdsignerApplication.getInstance().getJobManager();
-                jobManager.addJobInBackground(DocumentSignJob.newInstance(document.getDbId(), input.getText().toString(), filePath));
-            }
-        };
-
-        alertDialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.password)
-                .setPositiveButton(R.string.sign, onPositiveButton)
-                .setCancelable(false)
-                .setIcon(new IconDrawable(this, FontAwesomeIcons.fa_key))
-                .setView(input)
-                .create();
 
     }
 

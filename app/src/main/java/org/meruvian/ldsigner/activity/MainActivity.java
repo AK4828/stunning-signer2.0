@@ -9,7 +9,8 @@ import android.security.KeyChainAliasCallback;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
-import org.meruvian.ldsigner.R;
+
+import com.meruvian.ldsigner.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

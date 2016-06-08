@@ -14,9 +14,10 @@ import android.widget.TextView;
 
 import com.joanzapata.iconify.widget.IconButton;
 import org.meruvian.ldsigner.LdsignerApplication;
-import org.meruvian.ldsigner.R;
 import org.meruvian.ldsigner.job.CertificateChainJob;
 import org.meruvian.ldsigner.job.JobStatus;
+
+import com.meruvian.ldsigner.R;
 import com.path.android.jobqueue.JobManager;
 
 import butterknife.Bind;

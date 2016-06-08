@@ -7,7 +7,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
         android:orientation="vertical">
 
         <include
@@ -77,7 +76,7 @@
             android:id="@+id/btn_resume"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_margin="5dp"
             android:background="@color/colorPrimary"
             android:text="{fa-arrow-right} CONTINUE"
             android:textColor="@android:color/white" />
@@ -86,7 +85,7 @@
             android:id="@+id/btn_change"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_margin="5dp"
             android:background="@color/colorPrimary"
             android:text="{fa-pencil} CHANGE"
             android:textColor="@android:color/white" />

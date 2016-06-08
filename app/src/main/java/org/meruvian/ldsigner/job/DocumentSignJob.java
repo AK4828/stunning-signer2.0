@@ -10,9 +10,6 @@ import org.meruvian.ldsigner.entity.KeyStore;
 import org.meruvian.ldsigner.entity.SignedDocument;
 import org.meruvian.ldsigner.entity.SignedDocumentDao;
 import org.meruvian.ldsigner.utils.AuthenticationUtils;
-import com.meruvian.toolkit_core.cms.CmsSigner;
-import com.meruvian.toolkit_core.commons.KeyPairUtils;
-import com.meruvian.toolkit_core.commons.KeyStoreUtils;
 import com.path.android.jobqueue.Job;
 import com.path.android.jobqueue.Params;
 
@@ -61,43 +58,43 @@ public class DocumentSignJob extends Job {
 
     @Override
     public void onRun() throws Throwable {
-        KeyStore keyStore = AuthenticationUtils.getKeyStore();
-        try {
-            FileInputStream p12File = new FileInputStream(new File(keyStore.getLocation()));
-            char[] certPassword = password.toCharArray();
-            java.security.KeyStore ks = KeyStoreUtils.getKeyStore(p12File, certPassword, keyStore.getType());
-
-            KeyPair keyPair = KeyPairUtils.getKeyPair(ks, certPassword);
-            X509Certificate cert = KeyStoreUtils.getCertificate(ks);
-            Assert.assertNotNull(keyPair);
-            Assert.assertNotNull(cert);
-
-            File inputFile = new File(filePath);
-            File outputPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-            File outputFile = new File(outputPath, UUID.randomUUID().toString() + ".p7b");
-
-            CmsSigner signer = new CmsSigner(ks,certPassword);
-            signer.sign(inputFile, outputFile);
-
-            DaoSession daoSession = LdsignerApplication.getInstance().getDaoSession();
-            DocumentDao documentDao = daoSession.getDocumentDao();
-            SignedDocumentDao dao = daoSession.getSignedDocumentDao();
-
-            Document document = documentDao.load(docId);
-
-            SignedDocument signedDocument = new SignedDocument();
-            signedDocument.setDocument(document);
-            signedDocument.setSignatureType("PKCS7");
-            signedDocument.setSignatureBlob(FileUtils.readFileToByteArray(outputFile));
-
-            dao.insert(signedDocument);
-
-            EventBus.getDefault().post(new DocumentSignEvent(password, filePath, JobStatus.SUCCESS));
-
-        } catch (Exception e) {
-            EventBus.getDefault().post(new DocumentSignEvent(password, filePath, JobStatus.USER_ERROR));
-            log.error(e.getMessage(), e);
-        }
+//        KeyStore keyStore = AuthenticationUtils.getKeyStore();
+//        try {
+//            FileInputStream p12File = new FileInputStream(new File(keyStore.getLocation()));
+//            char[] certPassword = password.toCharArray();
+//            java.security.KeyStore ks = KeyStoreUtils.getKeyStore(p12File, certPassword, keyStore.getType());
+//
+//            KeyPair keyPair = KeyPairUtils.getKeyPair(ks, certPassword);
+//            X509Certificate cert = KeyStoreUtils.getCertificate(ks);
+//            Assert.assertNotNull(keyPair);
+//            Assert.assertNotNull(cert);
+//
+//            File inputFile = new File(filePath);
+//            File outputPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+//            File outputFile = new File(outputPath, UUID.randomUUID().toString() + ".p7b");
+//
+//            CmsSigner signer = new CmsSigner(ks,certPassword);
+//            signer.sign(inputFile, outputFile);
+//
+//            DaoSession daoSession = LdsignerApplication.getInstance().getDaoSession();
+//            DocumentDao documentDao = daoSession.getDocumentDao();
+//            SignedDocumentDao dao = daoSession.getSignedDocumentDao();
+//
+//            Document document = documentDao.load(docId);
+//
+//            SignedDocument signedDocument = new SignedDocument();
+//            signedDocument.setDocument(document);
+//            signedDocument.setSignatureType("PKCS7");
+//            signedDocument.setSignatureBlob(FileUtils.readFileToByteArray(outputFile));
+//
+//            dao.insert(signedDocument);
+//
+//            EventBus.getDefault().post(new DocumentSignEvent(password, filePath, JobStatus.SUCCESS));
+//
+//        } catch (Exception e) {
+//            EventBus.getDefault().post(new DocumentSignEvent(password, filePath, JobStatus.USER_ERROR));
+//            log.error(e.getMessage(), e);
+//        }
     }
 
     @Override
