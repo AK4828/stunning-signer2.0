@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.meruvian.toolkit_core">
+
+    <application
+        android:allowBackup="true">
+
+    </application>
+
+</manifest>

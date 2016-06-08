@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/entitygenerator/entitygenerator.iml" filepath="$PROJECT_DIR$/entitygenerator/entitygenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ldsigner.iml" filepath="$PROJECT_DIR$/ldsigner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/toolkit-core/toolkit-core.iml" filepath="$PROJECT_DIR$/toolkit-core/toolkit-core.iml" />
+    </modules>
+  </component>
+</project>
