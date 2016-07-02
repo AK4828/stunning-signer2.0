@@ -581,6 +581,6 @@
     <file url="file://$PROJECT_DIR$/toolkit-core/src/main/java/org/apache/pdfbox/util/XMLUtil.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/toolkit-core/src/main/java/org/apache/pdfbox/util/awt/AWTColor.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/toolkit-core/src/main/java/org/apache/pdfbox/util/awt/AffineTransform.java" charset="windows-1251" />
-    <file url="PROJECT" charset="windows-1251" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

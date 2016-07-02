@@ -39,7 +39,6 @@ public class CertificateChainJob extends Job {
 
     @Override
     public void onRun() throws Throwable {
-        Log.d("AAAA", "ASDQWE3");
         try {
 
             X509Certificate[] chain = new X509Certificate[0];

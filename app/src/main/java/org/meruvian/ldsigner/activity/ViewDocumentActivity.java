@@ -67,7 +67,6 @@ public class ViewDocumentActivity extends AppCompatActivity {
                     .enableSwipe(true)
                     .load();
 
-            setupAlertDialog();
         } else {
             Toast.makeText(this, "Choose file first", Toast.LENGTH_LONG);
             Intent i = new Intent(ViewDocumentActivity.this, SignedDocumentActivity.class);
@@ -78,48 +77,6 @@ public class ViewDocumentActivity extends AppCompatActivity {
 
     }
 
-    private void setupAlertDialog() {
-//        final EditText input = new EditText(this);
-//        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-//
-//        DialogInterface.OnClickListener onPositiveButton = new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                LdsignerApplication app  = LdsignerApplication.getInstance();
-//                DocumentDao documentDao = app.getDaoSession().getDocumentDao();
-//                FileInfoDao fileInfoDao = app.getDaoSession().getFileInfoDao();
-//                String filePath = getIntent().getStringExtra("filePath");
-//
-//                Document document = new Document();
-//
-//                FileInfo fileInfo = document.getDetachedFileInfo();
-//                fileInfo.setPath(filePath);
-//                long fileInfoId = fileInfoDao.insert(fileInfo);
-//
-//                document.setDbCreateDate(new Date());
-//                document.setDbActiveFlag(1);
-//                document.setFileInfoId(fileInfoId);
-//
-//                documentDao.insert(document);
-//
-//                DocumentSignJob.newInstance(document.getDbId(), input.getText().toString(), filePath);
-//
-//                jobManager = LdsignerApplication.getInstance().getJobManager();
-//                jobManager.addJobInBackground(DocumentSignJob.newInstance(document.getDbId(), input.getText().toString(), filePath));
-//            }
-//        };
-//
-//        alertDialog = new AlertDialog.Builder(this)
-//                .setTitle(R.string.password)
-//                .setPositiveButton(R.string.sign, onPositiveButton)
-//                .setCancelable(false)
-//                .setIcon(new IconDrawable(this, FontAwesomeIcons.fa_key))
-//                .setView(input)
-//                .create();
-
-
-
-    }
 
     private static int dpToPx(Context context, float dp) {
         // Reference http://stackoverflow.com/questions/8309354/formula-px-to-dp-dp-to-px-android
